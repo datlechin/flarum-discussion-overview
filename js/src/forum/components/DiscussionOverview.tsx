@@ -1,3 +1,4 @@
+import app from "flarum/forum/app";
 import Component from 'flarum/common/Component';
 import type Mithril from 'mithril';
 import Discussion from 'flarum/common/models/Discussion';
