@@ -1,5 +1,5 @@
 .DiscussionOverview {
-  margin: 20px 0;
+  margin-top: 40px;
   background-color: @control-bg;
   border-radius: @border-radius;
   &-list {
@@ -7,13 +7,24 @@
     list-style: none;
     flex-wrap: wrap;
     align-items: center;
-    padding: 0;
+    padding: 6px 0;
+    justify-content: space-between;
+
+    @media @tablet-up {
+      justify-content: flex-start;
+    }
 
     li {
-      padding: 7px 10px;
-      text-align: center;
+      padding: 0 10px;
+      display: flex;
+      gap: 4px;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
 
       .time {
+        display: flex;
+        align-items: center;
         font-size: 15px;
         color: @muted-color;
       }
@@ -25,7 +36,7 @@
       h4 {
         font-weight: normal;
         color: @muted-color;
-        margin: 1px 0 2px 0;
+        margin: 0;
       }
 
       .number {
@@ -47,7 +58,7 @@
 
     .last-reply {
       .Avatar {
-        --size: 24px;
+        --size: 20px;
         margin-right: 4px;
       }
     }

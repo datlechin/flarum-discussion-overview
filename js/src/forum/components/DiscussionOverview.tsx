@@ -3,6 +3,7 @@ import type Mithril from 'mithril';
 import Discussion from 'flarum/common/models/Discussion';
 import shortTime from '../helpers/shortTime';
 import Link from 'flarum/common/components/Link';
+import Tooltip from 'flarum/common/components/Tooltip';
 import avatar from 'flarum/common/helpers/avatar';
 
 export default class DiscussionOverview<Attrs> extends Component {
@@ -13,9 +14,15 @@ export default class DiscussionOverview<Attrs> extends Component {
   }
   view() {
     const discussion = this.discussion;
-    const posts = Object.keys(discussion.store.data.posts).map((key) => discussion.store.data.posts[key]);
+
+    if (!discussion) {
+      return null;
+    }
+
+    const posts = discussion?.posts();
+    const participantCount = discussion?.attribute('participantCount');
+    const lastPost = posts ? posts[posts.length - 1] : null;
     const users = Object.keys(discussion.store.data.users).map((key) => discussion.store.data.users[key]);
-    const lastPost = posts[posts.length - 1];
 
     return (
       <>
@@ -25,8 +32,8 @@ export default class DiscussionOverview<Attrs> extends Component {
             <div className="time">{shortTime(discussion?.createdAt())}</div>
           </li>
           <li className="last-reply">
+            <h4>{app.translator.trans('datlechin-discussion-overview.forum.last_reply')}</h4>
             <Link href={app.route.post(lastPost)}>
-              <h4>{app.translator.trans('datlechin-discussion-overview.forum.last_reply')}</h4>
               <div className="time">
                 {avatar(lastPost.user())}
                 {shortTime(discussion?.lastPostedAt())}
@@ -44,7 +51,7 @@ export default class DiscussionOverview<Attrs> extends Component {
             </li>
           ) : null}
           <li className="users">
-            <span className="number">{users.length}</span>
+            <span className="number">{participantCount}</span>
             <h4>{app.translator.trans('datlechin-discussion-overview.forum.users')}</h4>
           </li>
           <li className="likes">
@@ -54,7 +61,9 @@ export default class DiscussionOverview<Attrs> extends Component {
           <li className="avatars">
             <div className="user-list">
               {users.map((user) => (
-                <Link href={app.route.user(user)}>{avatar(user)}</Link>
+                <Tooltip text={user?.attribute('username')}>
+                  <Link href={app.route.user(user)}>{avatar(user)}</Link>
+                </Tooltip>
               ))}
             </div>
           </li>
