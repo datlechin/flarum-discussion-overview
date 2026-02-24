@@ -3,22 +3,15 @@ import { extend } from 'flarum/common/extend';
 import DiscussionOverview from './components/DiscussionOverview';
 
 app.initializers.add('datlechin/flarum-discussion-overview', () => {
-  extend('flarum/forum/components/PostStream', 'oncreate', function () {
-    const postStream: HTMLElement | null = document.querySelector('.CommentPost div');
+  extend('flarum/forum/components/CommentPost', 'content', function (content) {
+    const post = this.attrs.post;
 
-    if (!postStream) {
-      return;
-    }
+    if (post.number() !== 1) return;
 
-    const discussion = this.discussion;
+    const discussion = post.discussion();
 
-    const div = document.createElement('div');
-    div.className = 'DiscussionOverview';
+    if (!discussion) return;
 
-    m.mount(postStream.appendChild(div), {
-      view: function () {
-        return m(DiscussionOverview, { discussion });
-      },
-    });
+    content.push(<DiscussionOverview discussion={discussion} />);
   });
 });
