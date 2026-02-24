@@ -1,10 +1,9 @@
 import app from 'flarum/forum/app';
 import { extend } from 'flarum/common/extend';
-import PostStream from 'flarum/forum/components/PostStream';
 import DiscussionOverview from './components/DiscussionOverview';
 
 app.initializers.add('datlechin/flarum-discussion-overview', () => {
-  extend(PostStream.prototype, 'oncreate', function () {
+  extend('flarum/forum/components/PostStream', 'oncreate', function () {
     const postStream: HTMLElement | null = document.querySelector('.CommentPost div');
 
     if (!postStream) {
