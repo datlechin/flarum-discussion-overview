@@ -26,9 +26,7 @@ export default class DiscussionOverview extends Component<DiscussionOverviewAttr
   view() {
     return (
       <div className="DiscussionOverview">
-        <div className="DiscussionOverview-stats">
-          {this.statItems().toArray()}
-        </div>
+        <div className="DiscussionOverview-stats">{this.statItems().toArray()}</div>
         {this.participantSection()}
       </div>
     );
@@ -43,12 +41,8 @@ export default class DiscussionOverview extends Component<DiscussionOverviewAttr
       <div className="DiscussionOverview-stat">
         <Icon name="far fa-clock" />
         <div className="DiscussionOverview-stat-content">
-          <span className="DiscussionOverview-stat-label">
-            {app.translator.trans('datlechin-discussion-overview.forum.created')}
-          </span>
-          <span className="DiscussionOverview-stat-value">
-            {discussion.createdAt() ? humanTime(discussion.createdAt()!) : '—'}
-          </span>
+          <span className="DiscussionOverview-stat-label">{app.translator.trans('datlechin-discussion-overview.forum.created')}</span>
+          <span className="DiscussionOverview-stat-value">{discussion.createdAt() ? humanTime(discussion.createdAt()!) : '—'}</span>
         </div>
       </div>,
       100
@@ -62,9 +56,7 @@ export default class DiscussionOverview extends Component<DiscussionOverviewAttr
       <div className="DiscussionOverview-stat">
         <Icon name="fas fa-reply" />
         <div className="DiscussionOverview-stat-content">
-          <span className="DiscussionOverview-stat-label">
-            {app.translator.trans('datlechin-discussion-overview.forum.last_reply')}
-          </span>
+          <span className="DiscussionOverview-stat-label">{app.translator.trans('datlechin-discussion-overview.forum.last_reply')}</span>
           <span className="DiscussionOverview-stat-value">
             {lastPostedUser ? <Avatar user={lastPostedUser} /> : null}
             {lastPostedAt ? humanTime(lastPostedAt) : '—'}
@@ -79,12 +71,8 @@ export default class DiscussionOverview extends Component<DiscussionOverviewAttr
       <div className="DiscussionOverview-stat">
         <Icon name="far fa-comment" />
         <div className="DiscussionOverview-stat-content">
-          <span className="DiscussionOverview-stat-value DiscussionOverview-stat-value--number">
-            {discussion.replyCount()}
-          </span>
-          <span className="DiscussionOverview-stat-label">
-            {app.translator.trans('datlechin-discussion-overview.forum.replies')}
-          </span>
+          <span className="DiscussionOverview-stat-value DiscussionOverview-stat-value--number">{discussion.replyCount()}</span>
+          <span className="DiscussionOverview-stat-label">{app.translator.trans('datlechin-discussion-overview.forum.replies')}</span>
         </div>
       </div>,
       80
@@ -96,12 +84,8 @@ export default class DiscussionOverview extends Component<DiscussionOverviewAttr
         <div className="DiscussionOverview-stat">
           <Icon name="far fa-eye" />
           <div className="DiscussionOverview-stat-content">
-            <span className="DiscussionOverview-stat-value DiscussionOverview-stat-value--number">
-              {(discussion as any).viewCount?.() || 0}
-            </span>
-            <span className="DiscussionOverview-stat-label">
-              {app.translator.trans('datlechin-discussion-overview.forum.views')}
-            </span>
+            <span className="DiscussionOverview-stat-value DiscussionOverview-stat-value--number">{(discussion as any).viewCount?.() || 0}</span>
+            <span className="DiscussionOverview-stat-label">{app.translator.trans('datlechin-discussion-overview.forum.views')}</span>
           </div>
         </div>,
         70
@@ -117,12 +101,8 @@ export default class DiscussionOverview extends Component<DiscussionOverviewAttr
       <div className="DiscussionOverview-stat">
         <Icon name="far fa-thumbs-up" />
         <div className="DiscussionOverview-stat-content">
-          <span className="DiscussionOverview-stat-value DiscussionOverview-stat-value--number">
-            {likesCount}
-          </span>
-          <span className="DiscussionOverview-stat-label">
-            {app.translator.trans('datlechin-discussion-overview.forum.likes')}
-          </span>
+          <span className="DiscussionOverview-stat-value DiscussionOverview-stat-value--number">{likesCount}</span>
+          <span className="DiscussionOverview-stat-label">{app.translator.trans('datlechin-discussion-overview.forum.likes')}</span>
         </div>
       </div>,
       60
