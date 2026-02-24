@@ -5,7 +5,7 @@ import User from 'flarum/common/models/User';
 import Post from 'flarum/common/models/Post';
 import Link from 'flarum/common/components/Link';
 import Tooltip from 'flarum/common/components/Tooltip';
-import avatar from 'flarum/common/helpers/avatar';
+import Avatar from 'flarum/common/components/Avatar';
 import app from 'flarum/forum/app';
 
 interface DiscussionOverviewAttrs {
@@ -45,7 +45,7 @@ export default class DiscussionOverview extends Component<DiscussionOverviewAttr
             <h4>{app.translator.trans('datlechin-discussion-overview.forum.last_reply')}</h4>
             <Link href={app.route.post(lastPost)}>
               <div className="time">
-                {avatar(lastPost.user())}
+                <Avatar user={lastPost.user()} />}
                 {dayjs(discussion.lastPostedAt()).fromNow()}
               </div>
             </Link>
@@ -72,7 +72,7 @@ export default class DiscussionOverview extends Component<DiscussionOverviewAttr
             <div className="user-list">
               {Array.from(participantUsers).map((user: User) => (
                 <Tooltip key={user.id()} text={user.attribute('username')}>
-                  <Link href={app.route.user(user)}>{avatar(user)}</Link>
+                  <Link href={app.route.user(user)}><Avatar user={user} /></Link>
                 </Tooltip>
               ))}
             </div>
