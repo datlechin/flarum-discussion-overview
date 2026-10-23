@@ -8,7 +8,7 @@
   "license": "MIT",
   "require": {
     "php": "^8.2",
-    "flarum/core": "2.0.1"
+    "flarum/core": "2.0.2"
   },
   "authors": [
     {
